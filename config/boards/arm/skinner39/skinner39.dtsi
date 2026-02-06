@@ -160,7 +160,15 @@ zephyr_udc0:&usbd {
 
     pmw_listener: pmw_listener {
         compatible = "zmk,input-listener";
-        status = "disabled";
+        status = "okay";
         device = <&pmw_split>;
+
+        // Default: normal mouse movement
+
+        // SCROLL layer (7): Y-axis only scrolling
+        scroll_y_only {
+            layers = <7>;
+            input-processors = <&zip_y_to_vscroll_mapper>;
+        };
     };
 };
