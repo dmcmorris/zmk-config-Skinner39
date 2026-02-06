@@ -57,149 +57,106 @@
         compatible = "zmk,keymap";
 
         base_layer {
-
             bindings = <
+        // Row 0: Main 5x3 grid (positions 0-4 left, 5-9 right)
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │
             &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        // Row 1: Main 5x3 grid (positions 10-14 left, 15-19 right)
         //│  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │    ' "   │
             HRML(A,        S,         D,         F)     &kp G          &kp H      HRMR(J,        K,         L,     APOSTROPHE)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        // Row 2: Main 5x3 grid (positions 20-24 left, 25-29 right)
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
             &kp Z      &kp X      &kp C      &kp V   &lt ONEHAND B   &lt ONEHAND N  &kp M   &kp COMMA  &kp DOT    &kp FSLH
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  none    │ NUM TAB  │HYPER BSPC│   │  SPACE   │  SPACE   │   none   │  none    │
-            &none      &none      &none      &none      &lt NUM TAB    HYPERHT(BSPC)  &lt SYMBOL SPACE &lt NAV SPACE &none  &none
-        //│          │          │          │  mouse   │          │          │   │          │          │          │          │
-                                           &mo MOUSE  &none       &none           &none            &none
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
+        //╰──────────┴──────────┴──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────┴──────────┴──────────╯
+
+        // Row 3: Extra keys + Thumb keys (positions 30-38)
+        // Layout: | Left Extra (3) | Left Thumbs (3) | Right Thumbs (2) | Right Extra (1) |
+        // Matrix:   RC30 RC31 RC32   RC33 RC34 RC35   RC36 RC37          RC311
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────╮
+        //│  none    │  none    │  none    │ NUM/TAB  │ HYPER/BSP│  MOUSE   │   │  SPACE   │  SPACE   │  none    │
+            &none      &none      &none      &lt NUM TAB    HYPERHT(BSPC)  &mo MOUSE      &lt SYMBOL SPACE &lt NAV SPACE &none
+        //╰──────────┴──────────┴──────────┴──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
 
         nav_layer {
-
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │  Close   │  P Hist  │  N Hist  │ New Tab  │   │ DELETE   │  HOME    |   UP     │ END      │ PAGE UP  │
-            &none &kp RG(W) &kp RG(LEFT_BRACKET) &kp RG(RIGHT_BRACKET) &kp RG(T) &kp DEL &kp HOME &kp UP   &kp END  &kp PG_UP  
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ DELETE   │  Shell   │ P Space  │ N Space  │  Vol +   │   │  ENTER   │ LEFT     │ DOWN     │ RIGHT    │PAGE DOWN |
-            HRML(DEL, LS(RG(I)), RC(LARW), RC(RARW))  &kp C_VOLUME_UP &kp ENTER  &kp LARW   &kp DARW   &kp RARW   &kp PG_DN
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ Undo     │  Cut     │  Copy    │  Paste   │  Vol -   │   │          │ prev tab │ prev doc │ next doc │ next tab │
-           &kp RG(Z)  &kp RG(X)  &kp RG(C) &kp RG(V) &kp C_VOLUME_DOWN &none &kp RG(LA(LARW)) &kp RG(LA(DARW)) &kp RG(LA(UARW)) &kp RG(LA(RARW))
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  trans   │  BSPC    │  trans   │   │  trans   │  trans   │   none   │  none    │
-            &none      &none      &none      &trans     &kp BSPC        &trans     &trans      &none      &none
-        //│          │          │          │          │          │          │   │          │          │          │          │
-                                           &trans     &none       &none           &none            &none
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
+        // Row 0
+            &none &kp RG(W) &kp RG(LEFT_BRACKET) &kp RG(RIGHT_BRACKET) &kp RG(T)     &kp DEL &kp HOME &kp UP   &kp END  &kp PG_UP
+        // Row 1
+            HRML(DEL, LS(RG(I)), RC(LARW), RC(RARW))  &kp C_VOLUME_UP              &kp ENTER  &kp LARW   &kp DARW   &kp RARW   &kp PG_DN
+        // Row 2
+           &kp RG(Z)  &kp RG(X)  &kp RG(C) &kp RG(V) &kp C_VOLUME_DOWN             &none &kp RG(LA(LARW)) &kp RG(LA(DARW)) &kp RG(LA(UARW)) &kp RG(LA(RARW))
+        // Row 3: Extra + Thumbs
+            &none      &none      &none      &trans     &kp BSPC        &trans      &trans     &trans      &none
             >;
         };
 
         num_layer {
-
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│   ESC    │          │          │    TAB   │ DELETE   │   │     /    │   7      │  8       │  9       │  -       │
+        // Row 0
             &kp ESC    &trans      &trans    &kp TAB    &kp DEL        &kp FSLH    &kp N7    &kp N8     &kp N9     &kp KP_MINUS
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  !       │  @       │  #       │  $       │  %       │   │  ENTER   │  4       │  5       │  6       │  +       │
+        // Row 1
             HRML(EXCL,   AT,      HASH,       DLLR)     &kp PRCNT      &kp ENTER   &kp N4    &kp N5     &kp N6     &kp KP_PLUS
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ Undo     │  Cut     │  Copy    │  Paste   │          │   │     .    │  1       │  2       │  3       │     *    │
+        // Row 2
            &kp RG(Z)  &kp RG(X)  &kp RG(C) &kp RG(V)    &none         &kp DOT      &kp N1    &kp N2     &kp N3     &kp ASTERISK
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  trans   │  trans   │  trans   │   │  trans   │   N0     │   none   │  none    │
-            &none      &none      &none      &trans     &trans         &trans     &kp N0      &none      &none
-        //│          │          │          │          │          │          │   │          │          │          │          │
-                                           &trans     &none       &none           &trans           &kp N0
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
+        // Row 3: Extra + Thumbs
+            &none      &none      &none      &trans     &trans         &trans      &trans     &kp N0      &none
             >;
         };
 
         sym_layer {
-
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ !        │    @     │     #    │    $     │    %     │   │     ^    │    [     │    ]     │     *    │     =    │
+        // Row 0
             &kp EXCLAMATION &kp AT &kp HASH  &kp DOLLAR &kp PERCENT   &kp CARET  &kp LEFT_BRACKET &kp RIGHT_BRACKET &kp ASTERISK &kp EQUAL
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //|    `     │    ~     │    '     │    "     │     +    │   |  ENTER   │    (     │     )    │    &     |    ; :   |
-            HRML(GRAVE, TILDE, APOSTROPHE, DOUBLE_QUOTES) &kp PLUS &kp ENTER HRMR(LEFT_PARENTHESIS, RIGHT_PARENTHESIS, AMPERSAND, SEMICOLON)
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ Undo     │  Cut     │  Copy    │  Paste   │          │   │          │    {     │     }    │    \     │          │
+        // Row 1
+            HRML(GRAVE, TILDE, APOSTROPHE, DOUBLE_QUOTES) &kp PLUS                    &kp ENTER HRMR(LEFT_PARENTHESIS, RIGHT_PARENTHESIS, AMPERSAND, SEMICOLON)
+        // Row 2
            &kp RG(Z)  &kp RG(X)  &kp RG(C) &kp RG(V)    &none        &none  &kp LEFT_BRACE &kp RIGHT_BRACE &kp BACKSLASH  &kp PIPE
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  trans   │ SETTINGS │  trans   │   │  trans   │  trans   │   none   │  none    │
+        // Row 3: Extra + Thumbs
             &none      &none      &none      &trans   &mo SETTINGS     &trans      &trans      &none      &none
-        //│          │          │          │          │          │          │   │          │          │          │          │
-                                           &trans     &none       &none           &trans           &trans
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
         mouse_layer {
-
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│   N1     │   N2     │   N3     │   N4     │   N5     │   │   N6     │   N7     │   N8     │   N9     │   N0     │
+        // Row 0
             &kp N1     &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  LEFT    │  DOWN    │   UP     │  RIGHT   │          │   │  PAGE_UP │  LCLK    │          │  RCLK    │  MCLK    │
+        // Row 1
             &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans          &kp PAGE_UP &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │ PAGE_DOWN│          │          │          │          │
+        // Row 2
             &trans     &trans     &trans     &trans     &trans          &kp PAGE_DOWN &trans  &trans     &trans     &trans
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  trans   │  trans   │  trans   │   │  trans   │  trans   │   none   │  none    │
+        // Row 3: Extra + Thumbs
             &none      &none      &none      &trans     &trans          &trans     &trans      &none      &none
-        //│          │          │          │          │          │          │   │          │          │          │          │
-                                           &trans     &none       &none           &none            &none
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
         settings_layer {
-
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ BOOTLOAD │          │          │ BT_CLR   │ BT_SEL 0 │   │ BT_SEL 3 │          │          │          │ BOOTLOAD │
+        // Row 0
             &bootloader &none    &none    &bt BT_CLR &bt BT_SEL 0     &bt BT_SEL 3 &none    &none    &none    &bootloader
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │ BT_SEL 1 │   │ BT_SEL 4 │          │          │          │          │
+        // Row 1
             &none     &none     &none     &none      &bt BT_SEL 1     &bt BT_SEL 4 &none    &none    &none    &none
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │ BT_SEL 2 │   │ BT_SEL 5 │          │          │          │          │
+        // Row 2
             &none     &none     &none     &none      &bt BT_SEL 2     &bt BT_SEL 5 &none    &none    &none    &none
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  none    │  none    │  none    │   │  none    │  none    │   none   │  none    │
+        // Row 3: Extra + Thumbs
             &none      &none      &none      &none     &none            &none      &none      &none      &none
-        //│          │          │          │          │          │          │   │          │          │          │          │
-                                           &none      &none            &none      &none
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
         onehanded_layer {
-
             bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  MUTE    │ VOL_DOWN │   UP     │ VOL_UP   │  ESCAPE  │   │  ESCAPE  │ VOL_UP   │ MOVE_UP  │ VOL_DOWN │   MUTE   │
+        // Row 0
             &kp C_MUTE &kp C_VOLUME_DOWN &kp UP &kp C_VOLUME_UP &kp ESCAPE    &kp ESCAPE &kp C_VOLUME_UP &mmv MOVE_UP &kp C_VOLUME_DOWN &kp C_MUTE
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ LALT     │  LEFT    │  DOWN    │  RIGHT   │  ENTER   │   │  ENTER   │ MOVE_L   │ MOVE_D   │ MOVE_R   │  LALT    │
+        // Row 1
             &kp LEFT_ALT &kp LEFT &kp DOWN &kp RIGHT &kp ENTER        &kp ENTER &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp LEFT_ALT
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  END     │ PG_DOWN  │ CAPSLOCK │  PG_UP   │  HOME    │   │  HOME    │          │          │          │   END    │
+        // Row 2
             &kp END &kp PG_DN &kp C_AL_LOCK &kp PG_UP &kp HOME        &kp HOME &none &none &none &kp END
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-        //│   none   │  none    │  none    │  none    │  none    │  none    │   │ LCLK     │  RCLK    │   none   │  none    │
+        // Row 3: Extra + Thumbs
             &none      &none      &none      &none     &none            &mkp LCLK  &mkp RCLK   &none      &none
-        //│          │          │          │          │          │          │   │          │          │          │          │
-                                           &none      &none            &mkp LCLK  &mkp RCLK
-        //                                 ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
     };
