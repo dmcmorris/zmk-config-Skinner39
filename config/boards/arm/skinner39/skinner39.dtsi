@@ -165,10 +165,11 @@ zephyr_udc0:&usbd {
 
         // Default: normal mouse movement
 
-        // SCROLL layer (7): Y-axis only scrolling
+        // SCROLL layer (7): Y-axis only scrolling (inverted direction)
         scroll_y_only {
             layers = <7>;
-            input-processors = <&zip_y_to_vscroll_mapper>;
+            // Chain: scale Y by -1 (invert), then map to scroll
+            input-processors = <&zip_y_scaler_neg1_1 &zip_y_to_vscroll_mapper>;
         };
     };
 };

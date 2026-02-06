@@ -26,11 +26,22 @@
 
 / {
     input_processors {
+        // Maps Y movement to vertical scroll
         zip_y_to_vscroll_mapper: zip_y_to_vscroll_mapper {
             compatible = "zmk,input-processor-code-mapper";
             #input-processor-cells = <0>;
             type = <INPUT_EV_REL>;
             map = <INPUT_REL_Y INPUT_REL_WHEEL>;  // Y only -> vertical scroll
+        };
+        
+        // Inverts Y direction (scaler with -1 multiplier)
+        zip_y_scaler_neg1_1: zip_y_scaler_neg1_1 {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_Y>;
+            multiplier = <(-1)>;  // Negative to invert direction
+            divisor = <1>;
         };
     };
 
@@ -87,8 +98,8 @@
         // Layout: | Left Extra (3) | Left Thumbs (3) | Right Thumbs (2) | Right Extra (1) |
         // Matrix:   RC30 RC31 RC32   RC33 RC34 RC35   RC36 RC37          RC38
         //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────╮
-        //│  none    │  SCROLL  │  none    │  MOUSE   │ NUM/TAB  │HYPER/BSP │   │  SPACE   │  SPACE   │MOUSE TOG │
-            &none      &mo SCROLL &none      &mo MOUSE  &lt NUM TAB    HYPERHT(BSPC)  &lt SYMBOL SPACE &lt NAV SPACE &tog MOUSE
+        //│  none    │  none    │  none    │  MOUSE   │ NUM/TAB  │HYPER/BSP │   │  SPACE   │  SPACE   │MOUSE TOG │
+            &none      &none      &none      &mo MOUSE  &lt NUM TAB    HYPERHT(BSPC)  &lt SYMBOL SPACE &lt NAV SPACE &tog MOUSE
         //╰──────────┴──────────┴──────────┴──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
@@ -138,11 +149,10 @@
             &kp N1     &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
         // Row 1
             &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans          &kp PAGE_UP &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
-        // Row 2
-            &trans     &trans     &trans     &trans     &trans          &kp PAGE_DOWN &trans  &trans     &trans     &trans
+        // Row 2 - Right side pos 25 (N key) toggles to SCROLL layer
+            &trans     &trans     &trans     &trans     &trans          &tog SCROLL &trans  &trans     &trans     &trans
         // Row 3: Extra + Thumbs (new layout: MOUSE | NUM/TAB | HYPER/BSP)
-        // Middle extra key (pos 31) switches to SCROLL layer for Y-only scrolling
-            &none      &to SCROLL &none      &trans     &trans          &trans     &trans      &none      &tog MOUSE
+            &none      &none      &none      &trans     &trans          &trans     &trans      &none      &tog MOUSE
             >;
         };
 
@@ -152,11 +162,11 @@
             &kp N1     &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
         // Row 1: Arrow keys + Page Up
             &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans          &kp PG_UP  &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
-        // Row 2: Navigation keys (Home, End, Page Down)
-            &kp HOME    &trans     &trans     &trans     &trans          &kp PG_DN  &kp END    &trans     &trans     &trans
-        // Row 3: Extra + Thumbs - can return to MOUSE or BASE
+        // Row 2: Navigation keys (Home, End, Page Down) - Right pos 25 toggles back to MOUSE
+            &kp HOME    &trans     &trans     &trans     &trans          &tog MOUSE  &kp END    &trans     &trans     &trans
+        // Row 3: Extra + Thumbs - can return to BASE
         // Y-axis scrolling active on this layer (via input processor)
-            &none      &to MOUSE  &none      &to BASE   &kp BSPC        &trans     &trans      &none      &tog MOUSE
+            &none      &none      &none      &to BASE   &kp BSPC        &trans     &trans      &none      &tog MOUSE
             >;
         };
 
