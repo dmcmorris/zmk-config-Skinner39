@@ -16,9 +16,8 @@
 #define NUM 2
 #define SYMBOL 3
 #define MOUSE 4
-#define SETTINGS 5
-#define ONEHAND 6
-#define SCROLL 7
+#define SCROLL 5
+#define SETTINGS 6
 
 &mmv {
     time-to-max-speed-ms = <500>;
@@ -178,19 +177,6 @@
             &none     &none     &none     &none      &bt BT_SEL 2     &bt BT_SEL 5 &none    &none    &none    &none
         // Row 3: Extra + Thumbs (new layout: MOUSE | NUM/TAB | HYPER/BSP)
             &none      &none      &none      &none     &none            &none      &none      &none      &tog MOUSE
-            >;
-        };
-
-        onehanded_layer {
-            bindings = <
-        // Row 0
-            &kp C_MUTE &kp C_VOLUME_DOWN &kp UP &kp C_VOLUME_UP &kp ESCAPE    &kp ESCAPE &kp C_VOLUME_UP &mmv MOVE_UP &kp C_VOLUME_DOWN &kp C_MUTE
-        // Row 1
-            &kp LEFT_ALT &kp LEFT &kp DOWN &kp RIGHT &kp ENTER        &kp ENTER &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &kp LEFT_ALT
-        // Row 2
-            &kp END &kp PG_DN &kp C_AL_LOCK &kp PG_UP &kp HOME        &kp HOME &none &none &none &kp END
-        // Row 3: Extra + Thumbs (new layout: MOUSE | NUM/TAB | HYPER/BSP)
-            &none      &none      &none      &none     &none            &mkp LCLK  &mkp RCLK   &none      &tog MOUSE
             >;
         };
     };
