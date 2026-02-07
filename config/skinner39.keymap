@@ -41,7 +41,7 @@
             codes = <INPUT_REL_Y>;
         };
         
-        // Slows down scrolling (1/5 speed = 20%)
+        // Slows down scrolling (1/2 speed = 50%)
         zip_scroll_slow: zip_scroll_slow {
             compatible = "zmk,input-processor-scaler";
             #input-processor-cells = <2>;
