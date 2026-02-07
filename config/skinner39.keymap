@@ -40,6 +40,14 @@
             type = <INPUT_EV_REL>;
             codes = <INPUT_REL_Y>;
         };
+        
+        // Slows down scrolling (1/5 speed = 20%)
+        zip_scroll_slow: zip_scroll_slow {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_Y>;
+        };
     };
 
     behaviors {
@@ -95,8 +103,8 @@
         // Layout: | Left Extra (3) | Left Thumbs (3) | Right Thumbs (2) | Right Extra (1) |
         // Matrix:   RC30 RC31 RC32   RC33 RC34 RC35   RC36 RC37          RC38
         //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────╮
-        //│  none    │  none    │  none    │  MOUSE   │ NUM/TAB  │HYPER/BSP │   │  SPACE   │  SPACE   │MOUSE TOG │
-            &none      &none      &none      &mo MOUSE  &lt NUM TAB    HYPERHT(BSPC)  &lt SYMBOL SPACE &lt NAV SPACE &tog MOUSE
+        //│ SCROLL   │  none    │  none    │  MOUSE   │ NUM/TAB  │HYPER/BSP │   │  SPACE   │  SPACE   │MOUSE TOG │
+            &mo SCROLL &none      &none      &mo MOUSE  &lt NUM TAB    HYPERHT(BSPC)  &lt SYMBOL SPACE &lt NAV SPACE &tog MOUSE
         //╰──────────┴──────────┴──────────┴──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
             >;
         };
