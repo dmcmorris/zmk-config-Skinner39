@@ -161,7 +161,7 @@
         // Row 1: Arrow keys + Page Up
             &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans          &kp PG_UP  &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
         // Row 2: Navigation keys (Home, End, Page Down) - Right pos 25 toggles back to MOUSE
-            &kp HOME    &trans     &trans     &trans     &trans          &tog MOUSE  &kp END    &trans     &trans     &trans
+            &kp HOME    &trans     &trans     &trans     &trans          &tog SCROLL  &kp END    &trans     &trans     &trans
         // Row 3: Extra + Thumbs - can return to BASE
         // Y-axis scrolling active on this layer (via input processor)
             &none      &none      &none      &to BASE   &kp BSPC        &trans     &trans      &none      &tog MOUSE
