@@ -30,7 +30,7 @@
             compatible = "zmk,input-processor-code-mapper";
             #input-processor-cells = <0>;
             type = <INPUT_EV_REL>;
-            map = <INPUT_REL_Y 0x0B>;  // Y only -> high-res vertical scroll (0x0B = REL_WHEEL_HI_RES)
+            map = <INPUT_REL_Y INPUT_REL_WHEEL>;  // Y only -> vertical scroll
         };
         
         // Inverts Y direction (scaler with -1 multiplier)
