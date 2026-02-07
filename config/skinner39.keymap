@@ -37,11 +37,9 @@
         // Inverts Y direction (scaler with -1 multiplier)
         zip_y_scaler_neg1_1: zip_y_scaler_neg1_1 {
             compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <0>;
+            #input-processor-cells = <2>;  // Takes multiplier and divisor as params
             type = <INPUT_EV_REL>;
             codes = <INPUT_REL_Y>;
-            multiplier = <(-1)>;  // Negative to invert direction
-            divisor = <1>;
         };
     };
 
