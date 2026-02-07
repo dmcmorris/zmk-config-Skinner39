@@ -89,7 +89,7 @@
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // Row 2: Main 5x3 grid (positions 20-24 left, 25-29 right)
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
-            &kp Z      &kp X      &kp C      &kp V   &lt ONEHAND B   &lt ONEHAND N  &kp M   &kp COMMA  &kp DOT    &kp FSLH
+            &kp Z      &kp X      &kp C      &kp V   &kp B   &kp N  &kp M   &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────┴──────────┴──────────╯
 
         // Row 3: Extra keys + Thumb keys (positions 30-38)
