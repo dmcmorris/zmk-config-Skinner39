@@ -172,11 +172,8 @@ zephyr_udc0:&usbd {
             input-processors = <&zip_y_scaler_neg1_1 (-1) 1 &zip_y_to_vscroll_mapper>;
         };
         
-        // MEDIA layer (6): Normal mouse movement (volume controls are on keys)
-        media_normal {
-            layers = <6>;
-            // No special input processors - volume is controlled via keys
-            // Trackball works as normal mouse for navigation
-        };
+        // MEDIA layer (6): Normal mouse movement
+        // Trackball-as-volume would require custom input processor with threshold detection
+        // For now, use the dedicated volume keys (VOL_UP/DN/MUTE) in the MEDIA layer
     };
 };

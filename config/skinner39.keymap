@@ -50,12 +50,18 @@
             codes = <INPUT_REL_Y>;
         };
         
-        // Maps Y movement to volume control (for MEDIA layer)
-        zip_y_to_volume_mapper: zip_y_to_volume_mapper {
-            compatible = "zmk,input-processor-code-mapper";
-            #input-processor-cells = <0>;
-            type = <INPUT_EV_REL>;
-            map = <INPUT_REL_Y 0x00>;  // Y movement - will be processed by behavior listener
+    };
+
+    macros {
+        vol_up: vol_up {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C_VOL_UP>;
+        };
+        vol_down: vol_down {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C_VOL_DN>;
         };
     };
 
