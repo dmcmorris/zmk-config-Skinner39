@@ -151,24 +151,24 @@
         mouse_layer {
             bindings = <
         // Row 0
-            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
+            &trans     &trans     &trans     &trans     &trans          &tog SCROLL &kp PG_UP  &kp HOME   &trans     &trans
         // Row 1
-            &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans          &kp PAGE_UP &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
-        // Row 2 - Right side pos 25 (N key) toggles to SCROLL layer
-            &trans     &trans     &trans     &trans     &trans          &tog SCROLL &trans  &trans     &trans     &trans
-        // Row 3: Extra + Thumbs (new layout: MOUSE | NUM/TAB | HYPER/BSP)
+            &trans     &trans     &trans     &trans     &trans          &trans      &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
+        // Row 2
+            &trans     &trans     &trans     &trans     &trans          &trans      &trans     &trans     &trans     &trans
+        // Row 3: Extra + Thumbs
             &none      &none      &none      &trans     &trans          &trans     &trans      &none      &tog MOUSE
             >;
         };
 
         scroll_layer {
             bindings = <
-        // Row 0: Number row with navigation
-            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5          &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
-        // Row 1: Arrow keys + Page Up
-            &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans          &kp PG_UP  &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
-        // Row 2: Navigation keys (Home, End, Page Down) - Right pos 25 toggles back to MOUSE
-            &kp HOME    &trans     &trans     &trans     &trans          &tog SCROLL  &kp END    &trans     &trans     &trans
+        // Row 0
+            &trans     &trans     &trans     &trans     &trans          &tog SCROLL &kp PG_UP  &kp HOME   &trans     &trans
+        // Row 1
+            &trans     &trans     &trans     &trans     &trans          &trans      &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
+        // Row 2
+            &trans     &trans     &trans     &trans     &trans          &trans      &kp PG_DN  &kp END    &trans     &trans
         // Row 3: Extra + Thumbs - can return to BASE
         // Y-axis scrolling active on this layer (via input processor)
             &none      &none      &none      &to BASE   &kp BSPC        &trans     &trans      &none      &tog MOUSE
