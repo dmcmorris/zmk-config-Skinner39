@@ -17,7 +17,8 @@
 #define SYMBOL 3
 #define MOUSE 4
 #define SCROLL 5
-#define SETTINGS 6
+#define MEDIA 6
+#define SETTINGS 7
 
 &mmv {
     time-to-max-speed-ms = <500>;
@@ -47,6 +48,14 @@
             #input-processor-cells = <2>;
             type = <INPUT_EV_REL>;
             codes = <INPUT_REL_Y>;
+        };
+        
+        // Maps Y movement to volume control (for MEDIA layer)
+        zip_y_to_volume_mapper: zip_y_to_volume_mapper {
+            compatible = "zmk,input-processor-code-mapper";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            map = <INPUT_REL_Y 0x00>;  // Y movement - will be processed by behavior listener
         };
     };
 
@@ -96,7 +105,7 @@
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         // Row 2: Main 5x3 grid (positions 20-24 left, 25-29 right)
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
-            &kp Z      &kp X      &kp C      &kp V   &kp B   &kp N  &kp M   &kp COMMA  &kp DOT    &kp FSLH
+            &kp Z      &kp X      &kp C      &kp V   &lt MEDIA B   &lt MEDIA N  &kp M   &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────┴──────────┴──────────╯
 
         // Row 3: Extra keys + Thumb keys (positions 30-38)
@@ -172,6 +181,19 @@
         // Row 3: Extra + Thumbs - can return to BASE
         // Y-axis scrolling active on this layer (via input processor)
             &none      &none      &none      &to BASE   &kp BSPC        &trans     &trans      &none      &tog MOUSE
+            >;
+        };
+
+        media_layer {
+            bindings = <
+        // Row 0: Brightness controls on left
+            &kp C_BRIGHTNESS_UP &kp C_BRIGHTNESS_DOWN &trans &trans &trans   &trans &trans &trans &trans &trans
+        // Row 1: Media transport controls
+            &trans &trans &trans &trans &trans          &kp C_PREV &kp C_PLAY_PAUSE &kp C_NEXT &trans &trans
+        // Row 2: Volume controls + B/N triggers
+            &trans &trans &trans &trans &lt MEDIA B     &lt MEDIA N &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE &trans
+        // Row 3: Return to base
+            &none &none &none &to BASE &trans           &trans &trans &trans &tog MOUSE
             >;
         };
 
