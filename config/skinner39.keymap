@@ -155,7 +155,7 @@
         // Row 1
             &trans     &trans     &trans     &trans     &trans          &trans      &mkp LCLK  &trans     &mkp RCLK  &mkp MCLK
         // Row 2
-            &trans     &trans     &trans     &trans     &trans          &trans      &trans     &trans     &trans     &trans
+            &trans     &trans     &trans     &trans     &trans          &trans      &kp PG_DN  &kp END    &trans     &trans
         // Row 3: Extra + Thumbs
             &none      &none      &none      &trans     &trans          &trans     &trans      &none      &tog MOUSE
             >;
