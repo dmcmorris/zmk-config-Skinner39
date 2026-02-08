@@ -153,7 +153,7 @@
         // Row 0
             &trans     &trans     &trans     &trans     &trans          &tog SCROLL &kp PG_UP  &kp HOME   &trans     &trans
         // Row 1
-            &trans     &trans     &trans     &trans     &trans          &mkp 3      &mkp LCLK  &mkp 4     &mkp RCLK  &mkp MCLK
+            &trans     &trans     &trans     &trans     &trans          &mkp MB4    &mkp LCLK  &mkp MB5   &mkp RCLK  &mkp MCLK
         // Row 2
             &trans     &trans     &trans     &trans     &trans          &trans      &kp PG_DN  &kp END    &trans     &trans
         // Row 3: Extra + Thumbs
@@ -166,7 +166,7 @@
         // Row 0
             &trans     &trans     &trans     &trans     &trans          &tog SCROLL &kp PG_UP  &kp HOME   &trans     &trans
         // Row 1
-            &trans     &trans     &trans     &trans     &trans          &mkp 3      &mkp LCLK  &mkp 4     &mkp RCLK  &mkp MCLK
+            &trans     &trans     &trans     &trans     &trans          &mkp MB4    &mkp LCLK  &mkp MB5   &mkp RCLK  &mkp MCLK
         // Row 2
             &trans     &trans     &trans     &trans     &trans          &trans      &kp PG_DN  &kp END    &trans     &trans
         // Row 3: Extra + Thumbs - can return to BASE
