@@ -8,6 +8,7 @@
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
     model = "skinner39";
@@ -186,7 +187,7 @@ zephyr_udc0:&usbd {
             scale-multiplier = <1>;
             scale-divisor = <8>;  // Require 8 units of movement per volume step
             // Try binding key press directly - may need custom behavior for bidirectional
-            bindings = <&kp C_VOL_UP>;
+            bindings = <&vol_up>;
         };
     };
 };
